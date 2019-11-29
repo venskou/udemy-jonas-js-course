@@ -1,0 +1,27 @@
+{
+  "name": "udemy-jonas-js-course",
+  "version": "1.0.0",
+  "description": "Udemy Jonas JS course assignments",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venskou/udemy-jonas-js-course.git"
+  },
+  "keywords": [
+    "udemy",
+    "jonas",
+    "js"
+  ],
+  "author": "Uladzislau Vensko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/venskou/udemy-jonas-js-course/issues"
+  },
+  "homepage": "https://github.com/venskou/udemy-jonas-js-course#readme"
+}
