@@ -35,11 +35,11 @@ c) correct answer (I would use a number for this)
 */
 
 (function() {
-  var Question = function(question, answers, correctAnswer) {
+  function Question(question, answers, correctAnswer) {
     this.question = question;
     this.answers = answers;
     this.correctAnswer = correctAnswer;
-  };
+  }
 
   Question.prototype.showQuestion = function() {
     console.log(this.question);
@@ -48,15 +48,23 @@ c) correct answer (I would use a number for this)
     }
   };
 
-  Question.prototype.checkAnswer = function(numberOfAnswer) {
-    if (numberOfAnswer === '' || numberOfAnswer === null) return;
-    if (numberOfAnswer == this.correctAnswer) {
+  Question.prototype.checkAnswer = function(numberOfAnswer, callback) {
+    var sc;
+
+    if (numberOfAnswer === this.correctAnswer) {
       console.log('Your answer is correct!');
-      return true;
+      sc = callback(true);
     } else {
       console.log('Your answer is NOT correct!');
-      return false;
+      sc = callback(false);
     }
+
+    this.showScore(sc);
+  };
+
+  Question.prototype.showScore = function(score) {
+    console.log('Score: ' + score);
+    console.log('===========================');
   };
 
   var questions = [
@@ -65,21 +73,27 @@ c) correct answer (I would use a number for this)
     new Question('What is the longest river in Europe?', ['Bug', 'Wolga', 'Warta'], 1),
   ];
 
-  function init(questions) {
-    var userAnswer = '';
-    var userScore = 0;
-
-    while (userAnswer !== 'exit') {
-      var questionNumber = Math.floor(Math.random() * questions.length);
-      var currentQuestion = questions[questionNumber];
-      currentQuestion.showQuestion();
-      userAnswer = prompt('Enter number of answer');
-      var isCorrect = currentQuestion.checkAnswer(userAnswer);
-      if (isCorrect) {
-        userScore += 1;
+  function score() {
+    var sc = 0;
+    return function(correct) {
+      if (correct) {
+        sc++;
       }
-      console.log('Score:', userScore);
-      console.log('===========================');
+      return sc;
+    };
+  }
+
+  var keepScore = score();
+
+  function init() {
+    var questionNumber = Math.floor(Math.random() * questions.length);
+    var currentQuestion = questions[questionNumber];
+    currentQuestion.showQuestion();
+    var userAnswer = prompt('Enter number of answer');
+
+    if (userAnswer !== 'exit') {
+      currentQuestion.checkAnswer(parseInt(userAnswer), keepScore);
+      init();
     }
   }
 
