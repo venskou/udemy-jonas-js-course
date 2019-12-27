@@ -2,7 +2,8 @@
 
 > Master JavaScript with the most complete course! Projects, challenges, quizzes, JavaScript ES6+, OOP, AJAX, Webpack
 
-This repo is for use in [udemy js course](https://www.udemy.com/course/the-complete-javascript-course/). The The prefixes of the folders indicate which course section they correspond to.
+This repo is for use in [udemy js course](https://www.udemy.com/course/the-complete-javascript-course/).  
+The prefixes of the folders indicate which course section they correspond to.
 
 ## Course sections
 
